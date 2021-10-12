@@ -9,7 +9,7 @@ class Hello {
 
     public static double distance(Point p1, Point p2){
         double u;
-        u = ((p2.x- p1.x)*2+(p2.y- p1.y)*2)*2;
+        u = ((p2.x- p1.x)*2+(p2.y- p1.y)*2);
         return Math.sqrt(u);
     }
 }
