@@ -3,8 +3,6 @@ package ru.stqa.pft.sandbox;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 public class PointTest {
     @Test
     public void testLongPoint() {
