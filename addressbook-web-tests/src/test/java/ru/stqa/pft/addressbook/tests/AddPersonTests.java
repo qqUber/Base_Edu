@@ -1,15 +1,16 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+import ru.stqa.pft.addressbook.model.fillAddnewEnum;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
 
-public class AddPersonTests {
+public class AddPersonTests extends TestBase {
     private WebDriver wd;
     private boolean acceptNextAlert = true;
 
@@ -62,7 +63,7 @@ public class AddPersonTests {
         wd.findElement(By.name("byear")).clear();
         wd.findElement(By.name("byear")).sendKeys(fillAddnewEnum.getYear());
         wd.findElement(By.name("new_group")).click();
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(fillAddnewEnum.getGetGroup());
+       // new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(fillAddnewEnum.getGetGroup());
         wd.findElement(By.name("phone2")).click();
         wd.findElement(By.name("phone2")).clear();
         wd.findElement(By.name("phone2")).sendKeys(fillAddnewEnum.getCity());
