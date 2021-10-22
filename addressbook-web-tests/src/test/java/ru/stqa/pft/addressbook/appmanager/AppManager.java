@@ -49,7 +49,6 @@ public class AppManager {
         }
     }
 
-
     public GroupHelper getGroupHelper() {
         return groupHelper;
     }
