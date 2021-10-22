@@ -15,6 +15,7 @@ public class AppManager {
     private SessionHelper sessionHelper;
     private NavHelper navHelper;
     private GroupHelper groupHelper;
+    private ContactHelper contactHelper;
 
     public void initFirefox() {
         ProfilesIni profile = new ProfilesIni();
@@ -31,6 +32,7 @@ public class AppManager {
         groupHelper = new GroupHelper(wd);
         navHelper = new NavHelper(wd);
         sessionHelper = new SessionHelper(wd);
+        contactHelper = new ContactHelper(wd);
         sessionHelper.Login("admin", "secret");
     }
 
@@ -58,5 +60,9 @@ public class AppManager {
 
     public SessionHelper getSessionHelper() {
         return sessionHelper;
+    }
+
+    public ContactHelper getPersonHelper() {
+        return contactHelper;
     }
 }

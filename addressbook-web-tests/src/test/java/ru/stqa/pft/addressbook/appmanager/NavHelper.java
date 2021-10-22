@@ -9,6 +9,11 @@ public class NavHelper extends HelperBase {
     }
 
     public void gotoGroupPage() {
-      click(By.linkText("groups"));
+        click(By.xpath("//a[contains(text(),'groups')]"));
     }
+
+    public void gotoAddnew() {
+        click(By.xpath("//a[contains(text(),'add new')]"));
+    }
+
 }

@@ -17,11 +17,10 @@ public class GroupHelper extends HelperBase  {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
-        submitGroupAdd();
-
+        submitAdd();
     }
 
-    private void submitGroupAdd() {
+    private void submitAdd() {
         click(By.name("submit"));
     }
 
