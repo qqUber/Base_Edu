@@ -17,7 +17,6 @@ public class GroupHelper extends HelperBase  {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
-        submitAdd();
     }
 
     private void submitAdd() {
@@ -28,12 +27,17 @@ public class GroupHelper extends HelperBase  {
         click(By.name("new"));
         click(By.xpath("//div[@id='content']/form/label"));
     }
-
     public void deleteSelGroup() {
         click(By.name("delete"));
     }
-
     public void selectGroup() {
         click(By.name("selected[]"));
+    }
+    public void initGroupMod() {
+        click(By.xpath("//input[@name='edit']"));
+    }
+    public void submitGroupMod() {
+        click(By.xpath("//input[@name='update']"));
+        //click(By.xpath("//input[@name='update']"));
     }
 }

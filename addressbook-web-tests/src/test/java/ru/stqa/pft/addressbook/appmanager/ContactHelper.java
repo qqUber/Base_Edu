@@ -6,8 +6,6 @@ import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.fillAddnewEnum;
 
 public class ContactHelper extends HelperBase {
-    private boolean acceptNextAlert;
-
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
@@ -39,16 +37,13 @@ public class ContactHelper extends HelperBase {
     }
 
     public void DeleteAllPerson() {
-        acceptNextAlert = true;
+
         wd.findElement(By.xpath("//input[@id='MassCB']")).click();
         wd.findElement(By.xpath("//input[@value='Delete']")).click();
+        wd.switchTo().alert().accept();
     }
 
     public void submitAdd() {
         click(By.xpath("//input[@name='submit']"));
-    }
-
-    public boolean isAcceptNextAlert() {
-        return acceptNextAlert;
     }
 }
