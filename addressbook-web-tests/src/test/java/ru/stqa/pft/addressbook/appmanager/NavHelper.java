@@ -14,4 +14,7 @@ public class NavHelper extends HelperBase {
     public void gotoAddnew() {
         click(By.xpath("//a[contains(text(),'add new')]"));
     }
+    public void gotoHome(){
+        click(By.xpath("//a[contains(text(),'home')]"));
+    }
 }

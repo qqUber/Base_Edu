@@ -15,8 +15,8 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), fillAddnewEnum.getMname());
         type(By.name("lastname"), fillAddnewEnum.getLname());
         type(By.name("nickname"), fillAddnewEnum.getNick());
-        click(By.name("theform"));
-        type(By.name("home"), fillAddnewEnum.getHphone());
+        //click(By.name("theform"));
+        type(By.name("home"), fillAddnewEnum.getPhone());
         type(By.name("mobile"), fillAddnewEnum.getMphone());
         type(By.name("email"), fillAddnewEnum.getEmail());
         click(By.name("bday"));
@@ -24,11 +24,10 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.name("bmonth")).click();
         new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(fillAddnewEnum.getBmonth());
         type(By.name("byear"), fillAddnewEnum.getYear());
-        click(By.name("new_group"));
+        //click(By.name("new_group"));
         // new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(fillAddnewEnum.getGetGroup());
         type(By.name("phone2"), fillAddnewEnum.getCity());
         type(By.name("address2"), "fullAddress");
-        click(By.id("container"));
     }
     //wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
@@ -36,14 +35,31 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.linkText("home page")).click();
     }
 
-    public void DeleteAllPerson() {
-
+    public void selectAllPerson() {
         wd.findElement(By.xpath("//input[@id='MassCB']")).click();
+    }
+
+    public void deletePersons() {
         wd.findElement(By.xpath("//input[@value='Delete']")).click();
+    }
+
+    public void acceptAlert() {
         wd.switchTo().alert().accept();
     }
 
     public void submitAdd() {
         click(By.xpath("//input[@name='submit']"));
+    }
+
+    public void selectPerson() {
+    click(By.name("selected[]"));
+    }
+
+    public void updatePerson() {
+        click(By.xpath("//input[@name='update']"));
+    }
+
+    public void editPerson() {
+    click(By.xpath("//img[@alt='Edit']"));
     }
 }
