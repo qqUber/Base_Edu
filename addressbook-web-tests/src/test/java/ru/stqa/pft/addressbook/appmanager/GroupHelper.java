@@ -25,7 +25,6 @@ public class GroupHelper extends HelperBase  {
 
     public void initGroupAdd() {
         click(By.name("new"));
-        click(By.xpath("//div[@id='content']/form/label"));
     }
     public void deleteSelGroup() {
         click(By.name("delete"));
@@ -37,7 +36,6 @@ public class GroupHelper extends HelperBase  {
         click(By.xpath("//input[@name='edit']"));
     }
     public void submitGroupMod() {
-        click(By.xpath("//input[@name='update']"));
-        //click(By.xpath("//input[@name='update']"));
+        click(By.xpath("//input[@name='submit']"));
     }
 }

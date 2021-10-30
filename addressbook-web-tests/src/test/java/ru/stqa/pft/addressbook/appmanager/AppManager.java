@@ -3,11 +3,16 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.ProfilesIni;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class AppManager {
@@ -16,19 +21,37 @@ public class AppManager {
     private NavHelper navHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
+    private String browser;
 
-    public void initFirefox() {
+    public AppManager(String browser) {
+        this.browser = browser;
+    }
+
+    public void init() {
+        //FFOptions
         ProfilesIni profile = new ProfilesIni();
         FirefoxProfile fFoxProfile = profile.getProfile("SelForTest");
         FirefoxOptions opt = new FirefoxOptions();
         opt.setCapability(FirefoxDriver.PROFILE, fFoxProfile);
 
-        wd = new FirefoxDriver(opt);
+        //IEopt
+        DesiredCapabilities ieopt = DesiredCapabilities.internetExplorer();
+        ieopt.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+
+
+        if (Objects.equals(browser, BrowserType.FIREFOX)) {
+            wd = new FirefoxDriver(opt);
+        } else if (Objects.equals(browser, BrowserType.CHROME)) {
+            wd = new ChromeDriver();
+        } else if (Objects.equals(browser, BrowserType.IE)) {
+            wd = new InternetExplorerDriver();
+        }
+
         System.out.println(wd.getTitle());
-        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
-        wd.findElement(By.id("LoginForm")).click();
-        wd.findElement(By.xpath("//body")).click();
+        // wd.findElement(By.id("LoginForm")).click();
+        // wd.findElement(By.xpath("//body")).click();
         groupHelper = new GroupHelper(wd);
         navHelper = new NavHelper(wd);
         sessionHelper = new SessionHelper(wd);
@@ -37,7 +60,7 @@ public class AppManager {
     }
 
     public void stop() {
-        wd.close();
+        wd.quit();
     }
 
     private boolean isElementPresent(By by) {

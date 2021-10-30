@@ -1,16 +1,17 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.stqa.pft.addressbook.appmanager.AppManager;
 
 public class TestBase {
 
-    protected final AppManager app = new AppManager();
+    protected final AppManager app = new AppManager(BrowserType.FIREFOX);
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
-        app.initFirefox();
+        app.init();
     }
 
     @AfterMethod(alwaysRun = true)
