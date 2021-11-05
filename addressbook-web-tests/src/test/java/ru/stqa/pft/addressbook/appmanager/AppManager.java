@@ -32,6 +32,7 @@ public class AppManager {
         ProfilesIni profile = new ProfilesIni();
         FirefoxProfile fFoxProfile = profile.getProfile("SelForTest");
         FirefoxOptions opt = new FirefoxOptions();
+        opt.addPreference("network.proxy.type", 0);
         opt.setCapability(FirefoxDriver.PROFILE, fFoxProfile);
 
         //IEopt

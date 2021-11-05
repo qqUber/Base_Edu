@@ -6,7 +6,7 @@ public class DeletePersonTests extends TestBase{
     @Test
     public void testDelPersons() {
         app.getNavHelper().gotoHome();
-        app.getPersonHelper().selectAllPerson();
+        app.getPersonHelper().selectPerson();
         app.getPersonHelper().deletePersons();
         app.getPersonHelper().acceptAlert();
     }
