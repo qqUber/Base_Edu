@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-public class GroupHelper extends HelperBase  {
+public class GroupHelper extends HelperBase {
     public GroupHelper(WebDriver wd) {
         super(wd);
     }
@@ -26,16 +26,25 @@ public class GroupHelper extends HelperBase  {
     public void initGroupAdd() {
         click(By.name("new"));
     }
+
     public void deleteSelGroup() {
         click(By.name("delete"));
     }
+
     public void selectGroup() {
         click(By.name("selected[]"));
     }
+
     public void initGroupMod() {
         click(By.xpath("//input[@name='edit']"));
     }
+
     public void submitGroupMod() {
         click(By.xpath("//input[@name='submit']"));
     }
+
+    public void updateGroup() {
+        click(By.xpath("//input[@name='update']"));
+    }
+
 }

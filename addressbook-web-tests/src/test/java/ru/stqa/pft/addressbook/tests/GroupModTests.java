@@ -10,7 +10,7 @@ public class GroupModTests extends TestBase{
         app.getGroupHelper().selectGroup();
         app.getGroupHelper().initGroupMod();
         app.getGroupHelper().fillGroupForm(new GroupData("3", "4", "333"));
-        app.getGroupHelper().submitGroupMod();
+        app.getGroupHelper().updateGroup();
         app.getGroupHelper().returnToGroupPage();
     }
 }
