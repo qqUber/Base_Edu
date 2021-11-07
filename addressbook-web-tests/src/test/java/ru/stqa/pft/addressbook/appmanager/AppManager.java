@@ -51,8 +51,6 @@ public class AppManager {
         System.out.println(wd.getTitle());
         wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
-        // wd.findElement(By.id("LoginForm")).click();
-        // wd.findElement(By.xpath("//body")).click();
         groupHelper = new GroupHelper(wd);
         navHelper = new NavHelper(wd);
         sessionHelper = new SessionHelper(wd);

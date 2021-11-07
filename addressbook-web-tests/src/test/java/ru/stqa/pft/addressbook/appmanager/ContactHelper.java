@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactHelper extends HelperBase {
+public class ContactHelper extends BaseHelper {
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
@@ -67,5 +67,15 @@ public class ContactHelper extends HelperBase {
 
     public void editPerson() {
         click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void createPerson(ContactData contactData, boolean b) {
+        gotoAddnew();
+        fillAddnew(contactData, b);
+        submitAdd();
+        returnHome();
+    }
+    public void gotoAddnew() {
+        click(By.xpath("//a[contains(text(),'add new')]"));
     }
 }

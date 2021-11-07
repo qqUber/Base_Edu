@@ -7,7 +7,7 @@ public class GroupModTests extends TestBase {
     @Test
     public void testGroupMod() {
         app.getNavHelper().gotoGroupPage();
-        if (! app.getGroupHelper().isThereAGroup()) {
+        if (!app.getNavHelper().isThereAGroup()) {
             app.getGroupHelper().createGroup(new GroupData("i bought  one mdma", null, null));
         }
         app.getGroupHelper().selectGroup();
