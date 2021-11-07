@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
-public class fillAddnewEnum {
+public class ContactData {
     private final String mname;
     private final String fname;
     private final String lname;
@@ -11,8 +11,9 @@ public class fillAddnewEnum {
     private final String bmonth;
     private final String year;
     private final String city;
+    private String group;
 
-    public fillAddnewEnum(String mname, String fname, String lname, String nick, String phone, String mphone, String email, String bmonth, String year, String city) {
+    public ContactData(String mname, String fname, String lname, String nick, String phone, String mphone, String email, String bmonth, String year, String city, String group) {
         this.mname = mname;
         this.fname = fname;
         this.lname = lname;
@@ -23,6 +24,7 @@ public class fillAddnewEnum {
         this.bmonth = bmonth;
         this.year = year;
         this.city = city;
+        this.group = group;
     }
 
     public String getMname() {
@@ -63,5 +65,9 @@ public class fillAddnewEnum {
 
     public String getCity() {
         return city;
+    }
+
+    public String getGroup() {
+        return group;
     }
 }
