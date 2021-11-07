@@ -23,7 +23,7 @@ public class NavHelper extends HelperBase {
 
     public void gotoHome() {
         if (isElementPresent(By.id("maintable"))) {
-        return;
+            return;
         }
         click(By.xpath("//a[contains(text(),'home')]"));
     }

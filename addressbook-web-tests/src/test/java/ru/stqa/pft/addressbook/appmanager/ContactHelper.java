@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -37,6 +36,7 @@ public class ContactHelper extends HelperBase {
 
         //wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     }
+
     public void returnHome() {
         wd.findElement(By.linkText("home page")).click();
     }
