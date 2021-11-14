@@ -78,4 +78,7 @@ public class ContactHelper extends BaseHelper {
     public void gotoAddnew() {
         click(By.xpath("//a[contains(text(),'add new')]"));
     }
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }
