@@ -11,7 +11,7 @@ public class ContactData {
     private final String bmonth;
     private final String year;
     private final String city;
-    private String group;
+    private final String group;
 
     public ContactData(String mname, String fname, String lname, String nick, String phone, String mphone, String email, String bmonth, String year, String city, String group) {
         this.mname = mname;
