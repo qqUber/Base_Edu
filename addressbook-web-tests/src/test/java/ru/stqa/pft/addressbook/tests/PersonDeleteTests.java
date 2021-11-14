@@ -20,5 +20,8 @@ public class PersonDeleteTests extends TestBase {
         app.getNavHelper().gotoHome();
         List<ContactData> after = app.getPersonHelper().getContactList();
         Assert.assertEquals(after.size(), before.size() - 1);
+
+        before.remove(before.size() - 1);
+        Assert.assertEquals(before, after);
     }
 }
