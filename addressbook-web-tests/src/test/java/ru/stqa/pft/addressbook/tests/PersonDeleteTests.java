@@ -11,7 +11,7 @@ public class PersonDeleteTests extends TestBase {
     public void testDelPersons() {
         app.getNavHelper().gotoHome();
         if (!app.getNavHelper().isThereAGroup()) {
-            app.getPersonHelper().createPerson(new ContactData("Trsu", "dddaaa", "wwwqq", "nicknick", "+74959990055", "+71110099666", "createmyrules@com.tocom", "September", "2000", "Moscow", "3"), true);
+            app.getPersonHelper().createPerson(new ContactData("Trsu", "wwwqq", "+71110099666", "createmyrules@com.tocom", null));
         }
         List<ContactData> before = app.getPersonHelper().getContactList();
         app.getPersonHelper().selectPerson(before.size() - 1);

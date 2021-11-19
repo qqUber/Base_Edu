@@ -3,34 +3,37 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-    private final String mname;
+    private int id;
     private final String fname;
     private final String lname;
-    private final String nick;
     private final String phone;
-    private final String mphone;
     private final String email;
-    private final String bmonth;
-    private final String year;
-    private final String city;
     private final String group;
 
-    public ContactData(String mname, String fname, String lname, String nick, String phone, String mphone, String email, String bmonth, String year, String city, String group) {
-        this.mname = mname;
+    public ContactData(String fname, String lname, String phone, String email, String group) {
+        this.id = 0;
         this.fname = fname;
         this.lname = lname;
-        this.nick = nick;
         this.phone = phone;
-        this.mphone = mphone;
         this.email = email;
-        this.bmonth = bmonth;
-        this.year = year;
-        this.city = city;
         this.group = group;
     }
 
-    public String getMname() {
-        return mname;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ContactData(int id, String fname, String lname, String phone, String email, String group) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.phone = phone;
+        this.email = email;
+        this.group = group;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFname() {
@@ -41,32 +44,12 @@ public class ContactData {
         return lname;
     }
 
-    public String getNick() {
-        return nick;
-    }
-
     public String getPhone() {
         return phone;
     }
 
-    public String getMphone() {
-        return mphone;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public String getBmonth() {
-        return bmonth;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public String getCity() {
-        return city;
     }
 
     public String getGroup() {
@@ -76,9 +59,8 @@ public class ContactData {
     @Override
     public String toString() {
         return "ContactData{" +
-                "fname='" + fname + '\'' +
+                "id=" + id +
                 ", lname='" + lname + '\'' +
-                ", group='" + group + '\'' +
                 '}';
     }
 
@@ -87,11 +69,12 @@ public class ContactData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactData that = (ContactData) o;
-        return Objects.equals(fname, that.fname) && Objects.equals(lname, that.lname) && Objects.equals(group, that.group);
+        return id == that.id && Objects.equals(lname, that.lname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fname, lname, group);
+        return Objects.hash(id, lname);
     }
+
 }
