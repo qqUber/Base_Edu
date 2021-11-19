@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PersonAddTests extends TestBase {
 
-    @Test
+    @Test (enabled = false)
     public void testAddPerson() {
         app.getNavHelper().gotoHome();
         List<ContactData> before = app.getPersonHelper().getContactList();

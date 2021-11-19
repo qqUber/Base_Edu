@@ -7,7 +7,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import java.util.List;
 
 public class PersonDeleteTests extends TestBase {
-    @Test
+    @Test (enabled = false)
     public void testDelPersons() {
         app.getNavHelper().gotoHome();
         if (!app.getNavHelper().isThereAGroup()) {

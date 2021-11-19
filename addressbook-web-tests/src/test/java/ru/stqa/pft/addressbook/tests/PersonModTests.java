@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class PersonModTests extends TestBase {
-    @Test
+    @Test (enabled = false)
     public void testModPerson() {
         app.getNavHelper().gotoHome();
         if (!app.getNavHelper().isThereAGroup()) {
