@@ -47,13 +47,13 @@ public class GroupHelper extends BaseHelper {
         click(By.xpath("//input[@name='update']"));
     }
 
-    public void createGroup(GroupData group) {
+    public void create(GroupData group) {
         initGroupAdd();
         fillGroupForm(group);
         submitGroupMod();
         returnToGroupPage();
     }
-    public void modifyGroup(int index, GroupData group) {
+    public void modify(int index, GroupData group) {
         selectGroup(index);
         initGroupMod();
         fillGroupForm(group);
@@ -61,11 +61,17 @@ public class GroupHelper extends BaseHelper {
         returnToGroupPage();
     }
 
+    public void delete(int index) {
+        selectGroup(index);
+        deleteSelGroup();
+        returnToGroupPage();
+    }
+
     public int getGroupCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<GroupData> getGroupList() {
+    public List<GroupData> list() {
         List<GroupData> groups = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element : elements) {

@@ -63,11 +63,24 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//img[@alt='Edit']"));
     }
 
-    public void createPerson(ContactData contactData) {
+    public void create(ContactData contactData) {
         gotoAddnew();
         fillAddnew(contactData, true);
         submitAdd();
         returnHome();
+    }
+
+    public void modify(int index, ContactData contact) {
+        selectPerson(index);
+        editPerson();
+        fillAddnew(contact, false);
+        updatePerson();
+        returnHome();
+    }
+    public void delete(int index) {
+        selectPerson(index);
+        deletePersons();
+        acceptAlert();
     }
 
     public void gotoAddnew() {
@@ -78,7 +91,7 @@ public class ContactHelper extends BaseHelper {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {

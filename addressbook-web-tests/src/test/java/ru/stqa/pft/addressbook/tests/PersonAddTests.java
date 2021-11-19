@@ -3,21 +3,19 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class PersonAddTests extends TestBase {
 
-    @Test (enabled = false)
+    @Test (enabled = true)
     public void testAddPerson() {
-        app.getNavHelper().gotoHome();
-        List<ContactData> before = app.getPersonHelper().getContactList();
+        app.goTo().Home();
+        List<ContactData> before = app.person().list();
         ContactData contact = new ContactData("Dddaaa", "Mustroi", null, null, "3");
-        app.getPersonHelper().createPerson(contact);
-        List<ContactData> after = app.getPersonHelper().getContactList();
+        app.person().create(contact);
+        List<ContactData> after = app.person().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         before.add(contact);

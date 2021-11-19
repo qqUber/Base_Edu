@@ -71,11 +71,11 @@ public class AppManager {
         }
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
-    public NavHelper getNavHelper() {
+    public NavHelper goTo() {
         return navHelper;
     }
 
@@ -83,7 +83,7 @@ public class AppManager {
         return sessionHelper;
     }
 
-    public ContactHelper getPersonHelper() {
+    public ContactHelper person() {
         return contactHelper;
     }
 }

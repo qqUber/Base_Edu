@@ -8,7 +8,7 @@ public class NavHelper extends BaseHelper {
         super(wd);
     }
 
-    public void gotoGroupPage() {
+    public void groupPage() {
         if (isElementPresent(By.tagName("h1"))
                 && wd.findElement(By.tagName("h1")).getText().equals("Groups")
                 && isElementPresent(By.name("new"))) {
@@ -17,7 +17,7 @@ public class NavHelper extends BaseHelper {
         click(By.xpath("//a[contains(text(),'groups')]"));
     }
 
-    public void gotoHome() {
+    public void Home() {
         if (isElementPresent(By.id("maintable"))) {
             return;
         }
