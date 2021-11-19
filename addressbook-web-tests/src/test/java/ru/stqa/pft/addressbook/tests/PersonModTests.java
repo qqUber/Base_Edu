@@ -1,20 +1,25 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
 public class PersonModTests extends TestBase {
-    @Test (enabled = false)
-    public void testModPerson() {
+    @BeforeMethod
+    public void ensurePrecondition() {
         app.getNavHelper().gotoHome();
         if (!app.getNavHelper().isThereAGroup()) {
             app.getPersonHelper().createPerson(new ContactData("dddaaa", "Join", "+74959990055", "createmyrules@com.tocom", null));
         }
+    }
+    @Test (enabled = false)
+    public void testModPerson() {
         List<ContactData> before = app.getPersonHelper().getContactList();
         app.getPersonHelper().selectPerson(before.size() - 1);
         app.getPersonHelper().editPerson();
