@@ -16,7 +16,8 @@ public class PersonModTests extends TestBase {
             app.person().create(new ContactData("Dade", "Join", "+74959990055", "createmyrules@com.tocom", null));
         }
     }
-    @Test (enabled = true)
+
+    @Test(enabled = true)
     public void testModPerson() {
         List<ContactData> before = app.person().list();
         int index = before.size() - 1;

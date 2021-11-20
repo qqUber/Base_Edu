@@ -1,27 +1,31 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.sun.istack.internal.NotNull;
+import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
+import java.util.function.IntSupplier;
 
 public class GroupCreateTests extends TestBase {
 
+    @NotNull
     @Test
     public void testGroupAdd() {
         app.goTo().groupPage();
-        List<GroupData> before = app.group().list();
-        GroupData group = new GroupData("2 mdma", null, null);
+        Set<GroupData> before = app.group().all();
+        GroupData group = new GroupData().withName("OneMDMA");
         app.group().create(group);
-        List<GroupData> after = app.group().list();
+        Set<GroupData> after = app.group().all();
         Assert.assertEquals(after.size(), before.size() + 1);
 
+        group.withId(after.stream()
+                .mapToInt(GroupData::getId)
+                .max()
+                .orElseGet(null));
         before.add(group);
-        Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
-        before.sort(byId);
-        after.sort(byId);
         Assert.assertEquals(before, after);
     }
 }

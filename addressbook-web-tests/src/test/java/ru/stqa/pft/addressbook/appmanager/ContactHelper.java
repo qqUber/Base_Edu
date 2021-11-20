@@ -76,6 +76,7 @@ public class ContactHelper extends BaseHelper {
         updatePerson();
         returnHome();
     }
+
     public void delete(int index) {
         selectPerson(index);
         deletePersons();
@@ -96,7 +97,7 @@ public class ContactHelper extends BaseHelper {
         for (WebElement element : elements) {
             String lname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
             String fname = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
-            ContactData contact = new ContactData(fname, lname,null, null, null);
+            ContactData contact = new ContactData(fname, lname, null, null, null);
             contacts.add(contact);
         }
         return contacts;
