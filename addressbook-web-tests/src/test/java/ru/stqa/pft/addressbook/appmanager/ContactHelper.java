@@ -59,7 +59,7 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//input[@name='update']"));
     }
 
-    public void editPerson() {
+    public void editPerson(int index) {
         click(By.xpath("//img[@alt='Edit']"));
     }
 
@@ -70,8 +70,8 @@ public class ContactHelper extends BaseHelper {
         returnHome();
     }
 
-    public void modify(ContactData contact) {
-        editPerson();
+    public void modify(int index, ContactData contact) {
+        editPerson(index);
         fillAddnew(contact, false);
         updatePerson();
         returnHome();

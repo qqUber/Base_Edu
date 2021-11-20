@@ -21,11 +21,11 @@ public class PersonModTests extends TestBase {
         List<ContactData> before = app.person().list();
         int index = before.size() - 1;
         ContactData contact = new ContactData("Join", "Mustroi", null, null, null);
-        app.person().modify(contact);
+        app.person().modify(index, contact);
         List<ContactData> after = app.person().list();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(index);
+        before.remove(0);
         before.add(contact);
         Comparator<? super ContactData> byLastName = Comparator.comparing(ContactData::getLname);
         before.sort(byLastName);
