@@ -21,7 +21,7 @@ public class AppManager {
     private NavHelper navHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
-    private String browser;
+    private final String browser;
 
     public AppManager(String browser) {
         this.browser = browser;

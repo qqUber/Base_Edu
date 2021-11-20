@@ -4,34 +4,32 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PersonModTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
         app.goTo().Home();
-        if (app.person().list().size() == 0) {
-            app.person().create(new ContactData("Dade", "Join", "+74959990055", "createmyrules@com.tocom", null));
+        if (app.person().all().size() == 0) {
+            app.person().create(new ContactData().withFname("Dos").withLname("Create 3.11").withPhone("+79110009922").withEmail("123@yandex.com").withGroup(null));
         }
     }
 
     @Test(enabled = true)
     public void testModPerson() {
-        List<ContactData> before = app.person().list();
-        int index = before.size() - 1;
-        ContactData contact = new ContactData("Join", "Mustroi", null, null, null);
-        app.person().modify(index, contact);
-        List<ContactData> after = app.person().list();
+        Contacts before = app.person().all();
+        ContactData modContact = before.iterator().next();
+        app.person().modify(modContact);
+        Contacts after = app.person().all();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(0);
-        before.add(contact);
-        Comparator<? super ContactData> byLastName = Comparator.comparing(ContactData::getLname);
-        before.sort(byLastName);
-        after.sort(byLastName);
-        Assert.assertEquals(before, after);
+//        assertThat(after, equalTo(before.withModified(modContact)));
+        assertThat(after, equalTo(
+                before.without(modContact)
+                        .withAdded(modContact)));
     }
 
 }
