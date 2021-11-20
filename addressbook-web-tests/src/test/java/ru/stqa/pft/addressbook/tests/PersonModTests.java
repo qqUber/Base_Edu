@@ -13,23 +13,23 @@ public class PersonModTests extends TestBase {
     public void ensurePrecondition() {
         app.goTo().Home();
         if (app.person().list().size() == 0) {
-            app.person().create(new ContactData("dddaaa", "Join", "+74959990055", "createmyrules@com.tocom", null));
+            app.person().create(new ContactData("Dade", "Join", "+74959990055", "createmyrules@com.tocom", null));
         }
     }
     @Test (enabled = true)
     public void testModPerson() {
         List<ContactData> before = app.person().list();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(before.get(index).getId(), "Join", "Mustroi", "+71110099666", "createmyrules@com.tocom", "3");
-        app.person().modify(index, contact);
+        ContactData contact = new ContactData("Join", "Mustroi", null, null, null);
+        app.person().modify(contact);
         List<ContactData> after = app.person().list();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(index);
         before.add(contact);
-        Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
-        before.sort(byId);
-        after.sort(byId);
+        Comparator<? super ContactData> byLastName = Comparator.comparing(ContactData::getLname);
+        before.sort(byLastName);
+        after.sort(byLastName);
         Assert.assertEquals(before, after);
     }
 
