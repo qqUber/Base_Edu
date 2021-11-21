@@ -6,7 +6,6 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class PersonAddTests extends TestBase {
 
@@ -14,10 +13,10 @@ public class PersonAddTests extends TestBase {
     public void testAddPerson() {
         app.goTo().Home();
         Contacts before = app.person().all();
-        ContactData contact = new ContactData().withFname("Dos").withLname("Create 3.11");
+        ContactData contact = new ContactData().withFname("Dos").withLname("Create 3.11").withPhone("+79110009922").withEmail("123@yandex.com").withGroup(null);
         app.person().create(contact);
         Contacts after = app.person().all();
-        assertEquals(after.size(), before.size() + 1);
+        assertThat(after.size(), equalTo(before.size() + 1));
 
         assertThat(after, equalTo(before.withAdded(contact.withId(after.stream()
                 .mapToInt(ContactData::getId)

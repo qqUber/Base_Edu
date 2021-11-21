@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -25,7 +24,7 @@ public class PersonDeleteTests extends TestBase {
         app.person().delete(delContact);
         app.goTo().Home();
         Contacts after = app.person().all();
-        Assert.assertEquals(after.size(), before.size() - 1);
+        assertThat(after.size(), equalTo(before.size() - 1));
 
         assertThat(after, equalTo(before.without(delContact)));
 

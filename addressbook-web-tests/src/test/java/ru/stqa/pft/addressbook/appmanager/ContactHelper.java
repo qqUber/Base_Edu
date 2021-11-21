@@ -15,15 +15,15 @@ public class ContactHelper extends BaseHelper {
         super(wd);
     }
 
-    public void fillAddnew(ContactData ContactData, boolean creation) {
-        type(By.name("firstname"), ContactData.getFname());
-        type(By.name("lastname"), ContactData.getLname());
-        type(By.name("home"), ContactData.getPhone());
-        type(By.name("email"), ContactData.getEmail());
+    public void fillAddnew(ContactData contactData, boolean creation) {
+        type(By.name("firstname"), contactData.getFname());
+        type(By.name("lastname"), contactData.getLname());
+        type(By.name("home"), contactData.getPhone());
+        type(By.name("email"), contactData.getEmail());
         //click(By.name("new_group"));
         if (creation) {
-            if (ContactData.getGroup() != null) {
-                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
+            if (contactData.getGroup() != null) {
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
             } else {
                 Assert.assertTrue(isElementPresent(By.name("new_group")));
             }
@@ -51,20 +51,11 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//input[@name='submit']"));
     }
 
-    public void selectPerson(int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
-    }
-
     private void selectPersonById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
-
     public void updatePerson() {
         click(By.xpath("//input[@name='update']"));
-    }
-
-    public void editPerson() {
-        click(By.xpath("//img[@alt='Edit']"));
     }
 
     public void editPersonById(int id) {
@@ -75,6 +66,7 @@ public class ContactHelper extends BaseHelper {
         gotoAddnew();
         fillAddnew(contact, true);
         submitAdd();
+        contactCache = null;
         returnHome();
     }
 
@@ -88,6 +80,7 @@ public class ContactHelper extends BaseHelper {
     public void delete(ContactData contact) {
         selectPersonById(contact.getId());
         deletePersons();
+        contactCache = null;
         acceptAlert();
     }
 
@@ -95,15 +88,20 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//a[contains(text(),'add new')]"));
     }
 
+    private Contacts contactCache = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
-        List<WebElement> elements = wd.findElements(By.cssSelector("table tr[name='entry']"));
-        for (WebElement element : elements) {
-            int id = Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(1) input")).getAttribute("id"));
-            String lname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
-            String fname = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
-            contacts.add(new ContactData().withId(id).withFname(fname).withLname(lname));
+        if (contactCache != null) {
+            return new Contacts(contactCache);
         }
-        return contacts;
+        contactCache = new Contacts();
+            List<WebElement> elements = wd.findElements(By.cssSelector("table tr[name='entry']"));
+            for (WebElement element : elements) {
+                int id = Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(1) input")).getAttribute("id"));
+                String lname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+                String fname = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+                contactCache.add(new ContactData().withId(id).withFname(fname).withLname(lname));
+            }
+            return new Contacts(contactCache);
+        }
     }
-}
