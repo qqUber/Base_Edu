@@ -14,7 +14,10 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void returnToGroupPage() {
-        click(By.linkText("group page"));
+        if (isElementPresent(By.xpath("//a[contains(text(),'group page')]"))) {
+            click(By.linkText("group page"));
+        }
+        click(By.xpath("//a[contains(text(),'groups')]"));
     }
 
     public void fillGroupForm(GroupData groupData) {
@@ -71,14 +74,14 @@ public class GroupHelper extends BaseHelper {
         returnToGroupPage();
     }
 
-    public int getGroupCount() {
+    public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
 
     private Groups groupCache = null;
 
     public Groups all() {
-        if (groupCache != null){
+        if (groupCache != null) {
             return new Groups(groupCache);
         }
         groupCache = new Groups();

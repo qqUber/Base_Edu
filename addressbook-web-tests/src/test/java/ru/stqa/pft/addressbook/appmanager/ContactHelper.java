@@ -74,6 +74,7 @@ public class ContactHelper extends BaseHelper {
         editPersonById(contact.getId());
         fillAddnew(contact, false);
         updatePerson();
+        contactCache = null;
         returnHome();
     }
 
