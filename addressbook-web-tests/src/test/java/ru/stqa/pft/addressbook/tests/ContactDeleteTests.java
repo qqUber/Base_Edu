@@ -8,12 +8,12 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class PersonDeleteTests extends TestBase {
+public class ContactDeleteTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
         app.goTo().Home();
         if (app.person().all().size() == 0) {
-            app.person().create(new ContactData().withFname("Dos").withLname("Create 3.11").withPhone("+79110009922").withEmail("123@yandex.com").withGroup(null));
+            app.person().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null));
         }
     }
 

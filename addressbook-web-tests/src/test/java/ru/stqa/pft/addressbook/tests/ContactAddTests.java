@@ -7,13 +7,13 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class PersonAddTests extends TestBase {
+public class ContactAddTests extends TestBase {
 
     @Test(enabled = true)
     public void testAddPerson() {
         app.goTo().Home();
         Contacts before = app.person().all();
-        ContactData contact = new ContactData().withFname("Dos").withLname("Create 3.11").withPhone("+79110009922").withEmail("123@yandex.com").withGroup(null);
+        ContactData contact = new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null);
         app.person().create(contact);
         Contacts after = app.person().all();
         assertThat(after.size(), equalTo(before.size() + 1));

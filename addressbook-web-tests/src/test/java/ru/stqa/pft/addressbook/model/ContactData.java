@@ -6,8 +6,15 @@ public class ContactData {
     private int id = Integer.MAX_VALUE;
     private String fname;
     private String lname;
-    private String phone;
-    private String email;
+    private String hphone;
+    private String mphone;
+    private String wphone;
+    private String email1;
+    private String email2;
+    private String email3;
+    private String allphones;
+    private String allemails;
+    private String contactaddress;
     private String group;
 
     public int getId() {
@@ -22,16 +29,66 @@ public class ContactData {
         return lname;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getHphone() {
+        return hphone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMphone() {
+        return mphone;
+    }
+
+    public String getWphone() {
+        return wphone;
     }
 
     public String getGroup() {
         return group;
+    }
+
+    public String getAllphones() {
+        return allphones;
+    }
+    public String getEmail() {
+        return email1;
+    }
+    public String getContactaddress() {
+        return contactaddress;
+    }
+    public String getAllemails() {
+        return allemails;
+    }
+    public String getEmail2() {
+        return email2;
+    }
+    public String getEmail3() {
+        return email3;
+    }
+
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+    public ContactData withPhones(String allPhones) {
+        this.allphones = allPhones;
+        return this;
+    }
+
+
+    public ContactData withEmails(String allEmails) {
+        this.allemails = allEmails;
+        return this;
+    }
+
+
+    public ContactData withAddress(String contactAddress) {
+        this.contactaddress = contactAddress;
+        return this;
     }
 
     public ContactData withId(int id) {
@@ -49,13 +106,23 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withPhone(String phone) {
-        this.phone = phone;
+    public ContactData withHphone(String hphone) {
+        this.hphone = hphone;
+        return this;
+    }
+
+    public ContactData withMphone(String mphone) {
+        this.mphone = mphone;
+        return this;
+    }
+
+    public ContactData withWphone(String wphone) {
+        this.wphone = wphone;
         return this;
     }
 
     public ContactData withEmail(String email) {
-        this.email = email;
+        this.email1 = email;
         return this;
 
     }
@@ -68,10 +135,10 @@ public class ContactData {
     @Override
     public String toString() {
         return "ContactData{" +
-                "id=" + id +
-                ", fname='" + fname + '\'' +
-                ", lname='" + lname + '\'' +
-                '}';
+          "id=" + id +
+          ", fname='" + fname + '\'' +
+          ", lname='" + lname + '\'' +
+          '}';
     }
 
     @Override
