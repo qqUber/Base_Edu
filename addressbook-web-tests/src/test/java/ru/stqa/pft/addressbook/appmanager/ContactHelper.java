@@ -20,6 +20,7 @@ public class ContactHelper extends BaseHelper {
         type(By.name("lastname"), contactData.getLname());
         type(By.name("home"), contactData.getHphone());
         type(By.name("email"), contactData.getEmail());
+        attach(By.name("photo"), contactData.getPhoto());
         //click(By.name("new_group"));
         if (creation) {
             if (contactData.getGroup() != null) {
@@ -32,7 +33,10 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void returnHome() {
-        wd.findElement(By.linkText("home page")).click();
+        if (isElementPresent(By.xpath("//a[contains(@href, 'index.php')]"))) {
+            wd.findElement(By.linkText("home page")).click();
+        }
+        click(By.xpath("//a[contains(text(),'home')]"));
     }
 
     public void selectAllPerson() {
@@ -107,12 +111,12 @@ public class ContactHelper extends BaseHelper {
             String emails = cells.get(4).getText();
             String phones = cells.get(5).getText();
             contactCache.add(new ContactData()
-              .withId(id)
-              .withFname(fname)
-              .withLname(lname)
-              .withPhones(phones)
-              .withEmails(emails)
-              .withAddress(address));
+                    .withId(id)
+                    .withFname(fname)
+                    .withLname(lname)
+                    .withPhones(phones)
+                    .withEmails(emails)
+                    .withAddress(address));
         }
         return new Contacts(contactCache);
     }
@@ -130,15 +134,15 @@ public class ContactHelper extends BaseHelper {
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
         wd.navigate().back();
         return new ContactData()
-          .withId(contact.getId())
-          .withFname(fname)
-          .withLname(lname)
-          .withHphone(hphone)
-          .withMphone(mphone)
-          .withWphone(wphone)
-          .withAddress(address)
-          .withEmail(email)
-          .withEmail2(email2)
-          .withEmail3(email3);
+                .withId(contact.getId())
+                .withFname(fname)
+                .withLname(lname)
+                .withHphone(hphone)
+                .withMphone(mphone)
+                .withWphone(wphone)
+                .withAddress(address)
+                .withEmail(email)
+                .withEmail2(email2)
+                .withEmail3(email3);
     }
 }

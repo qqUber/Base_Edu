@@ -9,11 +9,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactAddTests extends TestBase {
 
-    @Test(enabled = true)
+    @Test
     public void testAddPerson() {
         app.goTo().Home();
         Contacts before = app.person().all();
-        ContactData contact = new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null);
+        //File photo = new File("src/test/resources/data.png");
+        ContactData contact = new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com");
         app.person().create(contact);
         Contacts after = app.person().all();
         assertThat(after.size(), equalTo(before.size() + 1));
