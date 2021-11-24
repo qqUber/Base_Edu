@@ -51,10 +51,10 @@ public class ContactData {
     public String getEmail() {
         return email1;
     }
-    public String getContactaddress() {
+    public String getContactAddress() {
         return contactaddress;
     }
-    public String getAllemails() {
+    public String getAllEmails() {
         return allemails;
     }
     public String getEmail2() {
