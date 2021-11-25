@@ -59,18 +59,23 @@ public class ContactData {
     public String getAllphones() {
         return allphones;
     }
+
     public String getEmail() {
         return email1;
     }
+
     public String getContactAddress() {
         return contactaddress;
     }
+
     public String getAllEmails() {
         return allemails;
     }
+
     public String getEmail2() {
         return email2;
     }
+
     public String getEmail3() {
         return email3;
     }
@@ -85,13 +90,13 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withPhones(String allPhones) {
+    public ContactData withAllPhones(String allPhones) {
         this.allphones = allPhones;
         return this;
     }
 
 
-    public ContactData withEmails(String allEmails) {
+    public ContactData withAllEmails(String allEmails) {
         this.allemails = allEmails;
         return this;
     }
@@ -146,10 +151,10 @@ public class ContactData {
     @Override
     public String toString() {
         return "ContactData{" +
-          "id=" + id +
-          ", fname='" + fname + '\'' +
-          ", lname='" + lname + '\'' +
-          '}';
+                "id=" + id +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                '}';
     }
 
     @Override

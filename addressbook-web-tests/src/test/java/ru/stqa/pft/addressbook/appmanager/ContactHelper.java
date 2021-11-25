@@ -114,8 +114,8 @@ public class ContactHelper extends BaseHelper {
                     .withId(id)
                     .withFname(fname)
                     .withLname(lname)
-                    .withPhones(phones)
-                    .withEmails(emails)
+                    .withAllPhones(phones)
+                    .withAllEmails(emails)
                     .withAddress(address));
         }
         return new Contacts(contactCache);
