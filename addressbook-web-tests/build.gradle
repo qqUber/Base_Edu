@@ -10,14 +10,12 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.beust:jcommander:1.81'
     implementation 'com.google.code.gson:gson:2.8.9'
     testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
-// https://mvnrepository.com/artifact/commons-io/commons-io
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
     testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
-
 }
 
 test {
