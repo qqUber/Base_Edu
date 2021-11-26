@@ -33,9 +33,10 @@ public class ContactAttributeTests extends TestBase {
 
     private String mergePhones(ContactData contact) {
         return Stream.of(contact.getHphone(), contact.getMphone(), contact.getWphone()).filter((s) -> !s.equals(""))
-          .map(ContactAttributeTests::cleaned)
-          .collect(Collectors.joining("\n"));
+                .map(ContactAttributeTests::cleaned)
+                .collect(Collectors.joining("\n"));
     }
+
     private String mergeEmails(ContactData contact) {
         return Stream.of(contact.getEmail(), contact.getEmail2(), contact.getEmail3()).filter((s) -> !s.equals(""))
                 .collect(Collectors.joining("\n"));

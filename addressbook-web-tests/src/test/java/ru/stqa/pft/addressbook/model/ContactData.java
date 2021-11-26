@@ -6,6 +6,7 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import java.io.File;
 import java.util.Objects;
+
 @XStreamAlias("contacts")
 public class ContactData {
     @XStreamOmitField

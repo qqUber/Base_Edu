@@ -16,6 +16,7 @@ public class GroupModTests extends TestBase {
             app.group().create(new GroupData().withName("213SS"));
         }
     }
+
     @Test
     public void testGroupMod() {
 
