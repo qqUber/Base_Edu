@@ -19,7 +19,15 @@ dependencies {
     testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
 }
 
-test {
+task testGroups(type: Test) {
     // enable TestNG support (default is JUnit)
-    useTestNG()
+    useTestNG {
+        suites 'src/test/resources/testng-groups.xml'
+    }
+}
+task testContacts(type: Test) {
+    // enable TestNG support (default is JUnit)
+    useTestNG {
+        suites 'src/test/resources/testng-contacts.xml'
+    }
 }
