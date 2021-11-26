@@ -1,0 +1,27 @@
+<list>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fname>fname 0</fname>
+    <lname>lname 0</lname>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fname>fname 1</fname>
+    <lname>lname 1</lname>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fname>fname 2</fname>
+    <lname>lname 2</lname>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fname>fname 3</fname>
+    <lname>lname 3</lname>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fname>fname 4</fname>
+    <lname>lname 4</lname>
+  </ru.stqa.pft.addressbook.model.ContactData>
+</list>
