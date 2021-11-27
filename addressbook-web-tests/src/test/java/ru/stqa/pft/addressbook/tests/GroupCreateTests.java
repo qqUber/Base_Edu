@@ -40,14 +40,14 @@ public class GroupCreateTests extends TestBase {
     @DataProvider
     public Iterator<Object[]> validGroupsFromJson() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.json"))) {
-            String json = "";
+            StringBuilder json = new StringBuilder();
             String line = reader.readLine();
             while (line != null) {
-                json += line;
+                json.append(line);
                 line = reader.readLine();
             }
             Gson gson = new Gson();
-            List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {
+            List<GroupData> groups = gson.fromJson(json.toString(), new TypeToken<List<GroupData>>() {
             }.getType());
             return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
         }

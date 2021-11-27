@@ -19,7 +19,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactAddTests extends TestBase {
-
     @DataProvider
     public Iterator<Object[]> validContactsFromXml() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts.xml"))) {
@@ -66,5 +65,6 @@ public class ContactAddTests extends TestBase {
                 .mapToInt(ContactData::getId)
                 .max()
                 .orElseGet(null)))));
+
     }
 }
