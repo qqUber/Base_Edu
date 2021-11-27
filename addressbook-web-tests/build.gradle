@@ -18,6 +18,8 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
     testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
     testImplementation 'ch.qos.logback:logback-classic:1.2.7'
+    implementation 'mysql:mysql-connector-java:8.0.27'
+
 
 }
 
