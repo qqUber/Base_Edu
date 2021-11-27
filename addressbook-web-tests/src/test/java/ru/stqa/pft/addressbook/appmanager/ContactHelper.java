@@ -20,7 +20,7 @@ public class ContactHelper extends BaseHelper {
         type(By.name("lastname"), contactData.getLname());
         type(By.name("home"), contactData.getHphone());
         type(By.name("email"), contactData.getEmail());
-        attach(By.name("photo"), contactData.getPhoto());
+        //attach(By.name("photo"), contactData.getPhoto());
         //click(By.name("new_group"));
         if (creation) {
             if (contactData.getGroup() != null) {

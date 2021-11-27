@@ -55,10 +55,10 @@ public class ContactAddTests extends TestBase {
     @Test(dataProvider = "validContactsFromJson")
     public void testAddPerson(ContactData contact) {
         app.goTo().Home();
-        Contacts before = app.person().all();
+        Contacts before = app.contact().all();
         //File photo = new File("src/test/resources/data.png");
-        app.person().create(contact);
-        Contacts after = app.person().all();
+        app.contact().create(contact);
+        Contacts after = app.contact().all();
         assertThat(after.size(), equalTo(before.size() + 1));
 
         assertThat(after, equalTo(before.withAdded(contact.withId(after.stream()

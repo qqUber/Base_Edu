@@ -1,22 +1,22 @@
 <list>
-  <contacts>
-    <fname>fname 0</fname>
-    <lname>lname 0</lname>
-  </contacts>
-  <contacts>
-    <fname>fname 1</fname>
-    <lname>lname 1</lname>
-  </contacts>
-  <contacts>
-    <fname>fname 2</fname>
-    <lname>lname 2</lname>
-  </contacts>
-  <contacts>
-    <fname>fname 3</fname>
-    <lname>lname 3</lname>
-  </contacts>
-  <contacts>
-    <fname>fname 4</fname>
-    <lname>lname 4</lname>
-  </contacts>
+    <contacts>
+        <fname>fname 0</fname>
+        <lname>lname 0</lname>
+    </contacts>
+    <contacts>
+        <fname>fname 1</fname>
+        <lname>lname 1</lname>
+    </contacts>
+    <contacts>
+        <fname>fname 2</fname>
+        <lname>lname 2</lname>
+    </contacts>
+    <contacts>
+        <fname>fname 3</fname>
+        <lname>lname 3</lname>
+    </contacts>
+    <contacts>
+        <fname>fname 4</fname>
+        <lname>lname 4</lname>
+    </contacts>
 </list>

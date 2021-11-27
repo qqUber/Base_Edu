@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @XStreamAlias("contacts")
 @Entity
-@Table(name="addressbook")
+@Table(name = "addressbook")
 public class ContactData {
     @XStreamOmitField
     @Id
@@ -42,7 +42,7 @@ public class ContactData {
     @Transient
     private String allemails;
     @Transient
-    private String contactaddress;
+    private String address;
     @Transient
     private String group;
     @Transient
@@ -94,7 +94,7 @@ public class ContactData {
     }
 
     public String getContactAddress() {
-        return contactaddress;
+        return address;
     }
 
     public String getAllEmails() {
@@ -131,8 +131,8 @@ public class ContactData {
     }
 
 
-    public ContactData withAddress(String contactAddress) {
-        this.contactaddress = contactAddress;
+    public ContactData withAddress(String address) {
+        this.address = address;
         return this;
     }
 

@@ -23,6 +23,7 @@ public class AppManager {
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
     private final String browser;
+    private DbHelper dbHelper;
 
     public AppManager(String browser) {
         this.browser = browser;
@@ -30,8 +31,11 @@ public class AppManager {
     }
 
     public void init() throws IOException {
+        dbHelper = new DbHelper();
+
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
         switch (browser) {
             case BrowserType.FIREFOX:
                 wd = new FirefoxDriver();
@@ -78,11 +82,11 @@ public class AppManager {
         return navHelper;
     }
 
-    public SessionHelper getSessionHelper() {
-        return sessionHelper;
+    public DbHelper db() {
+        return dbHelper;
     }
 
-    public ContactHelper person() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 }

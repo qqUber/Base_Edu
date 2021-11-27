@@ -15,16 +15,16 @@ public class ContactAttributeTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
         app.goTo().Home();
-        if (app.person().all().size() == 0) {
-            app.person().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null));
+        if (app.contact().all().size() == 0) {
+            app.contact().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null));
         }
     }
 
     @Test
     public void testContactPhones() {
         app.goTo().Home();
-        ContactData contact = app.person().all().iterator().next();
-        ContactData contactInfoFromEditForm = app.person().infoFromEditForm(contact);
+        ContactData contact = app.contact().all().iterator().next();
+        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
         assertThat(contact.getAllphones(), equalTo(mergePhones(contactInfoFromEditForm)));
         assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));

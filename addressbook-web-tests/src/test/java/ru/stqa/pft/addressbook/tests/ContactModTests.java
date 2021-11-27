@@ -12,17 +12,17 @@ public class ContactModTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
         app.goTo().Home();
-        if (app.person().all().size() == 0) {
-            app.person().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null));
+        if (app.db().contact().size() == 0) {
+            app.contact().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null));
         }
     }
 
     @Test(enabled = true)
     public void testModPerson() {
-        Contacts before = app.person().all();
+        Contacts before = app.db().contact();
         ContactData modContact = before.iterator().next();
-        app.person().modify(modContact);
-        Contacts after = app.person().all();
+        app.contact().modify(modContact);
+        Contacts after = app.db().contact();
 
         assertThat(after.size(), equalTo(
                 before.size()));
