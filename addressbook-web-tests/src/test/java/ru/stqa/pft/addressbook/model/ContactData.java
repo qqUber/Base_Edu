@@ -3,28 +3,49 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contacts")
+@Entity
+@Table(name="addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
     private int id = Integer.MAX_VALUE;
     @Expose
+    @Basic
+    @Column(name = "firstname")
     private String fname;
     @Expose
+    @Basic
+    @Column(name = "lastname")
     private String lname;
+    @Column(name = "home")
+    @Type(type = "text")
     private String hphone;
-    private String mphone;
-    private String wphone;
-    private String email1;
+    @Type(type = "text")
+    private String mobile;
+    @Type(type = "text")
+    private String work;
+    @Type(type = "text")
+    private String email;
+    @Type(type = "text")
     private String email2;
+    @Type(type = "text")
     private String email3;
+    @Transient
     private String allphones;
+    @Transient
     private String allemails;
+    @Transient
     private String contactaddress;
+    @Transient
     private String group;
+    @Transient
     private File photo;
 
     public File getPhoto() {
@@ -52,12 +73,12 @@ public class ContactData {
         return hphone;
     }
 
-    public String getMphone() {
-        return mphone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public String getWphone() {
-        return wphone;
+    public String getWork() {
+        return work;
     }
 
     public String getGroup() {
@@ -69,7 +90,7 @@ public class ContactData {
     }
 
     public String getEmail() {
-        return email1;
+        return email;
     }
 
     public String getContactAddress() {
@@ -136,17 +157,17 @@ public class ContactData {
     }
 
     public ContactData withMphone(String mphone) {
-        this.mphone = mphone;
+        this.mobile = mphone;
         return this;
     }
 
     public ContactData withWphone(String wphone) {
-        this.wphone = wphone;
+        this.work = wphone;
         return this;
     }
 
     public ContactData withEmail(String email) {
-        this.email1 = email;
+        this.email = email;
         return this;
 
     }

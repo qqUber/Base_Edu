@@ -32,7 +32,7 @@ public class ContactAttributeTests extends TestBase {
     }
 
     private String mergePhones(ContactData contact) {
-        return Stream.of(contact.getHphone(), contact.getMphone(), contact.getWphone()).filter((s) -> !s.equals(""))
+        return Stream.of(contact.getHphone(), contact.getMobile(), contact.getWork()).filter((s) -> !s.equals(""))
                 .map(ContactAttributeTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
