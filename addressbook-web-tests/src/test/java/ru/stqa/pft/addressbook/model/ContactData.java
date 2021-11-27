@@ -46,14 +46,14 @@ public class ContactData {
     @Transient
     private String group;
     @Transient
-    private File photo;
+    private String photo;
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
