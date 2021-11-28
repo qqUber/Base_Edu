@@ -15,7 +15,7 @@ public class ContactAttributeTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
         app.goTo().Home();
-        if (app.contact().all().size() == 0) {
+        if (app.db().contact().size() == 0) {
             app.contact().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null));
         }
     }
@@ -28,7 +28,7 @@ public class ContactAttributeTests extends TestBase {
 
         assertThat(contact.getAllphones(), equalTo(mergePhones(contactInfoFromEditForm)));
         assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
-        assertThat(contact.getContactAddress(), equalTo(contactInfoFromEditForm.getContactAddress()));
+        assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
     }
 
     private String mergePhones(ContactData contact) {

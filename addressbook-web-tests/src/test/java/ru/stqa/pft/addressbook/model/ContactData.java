@@ -93,7 +93,7 @@ public class ContactData {
         return email;
     }
 
-    public String getContactAddress() {
+    public String getAddress() {
         return address;
     }
 
