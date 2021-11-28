@@ -23,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBase {
     protected static final AppManager app
-            = new AppManager(System.getProperty("browser", BrowserType.CHROME));
+            = new AppManager(System.getProperty("browser", BrowserType.FIREFOX));
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
     @BeforeSuite

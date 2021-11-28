@@ -20,7 +20,7 @@ public class ContactAttributeTests extends TestBase {
     public void ensurePrecondition() {
         app.goTo().Home();
         if (app.db().contacts().size() == 0) {
-            app.contact().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null));
+            app.contact().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com"));
         }
     }
 
