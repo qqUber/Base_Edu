@@ -17,7 +17,7 @@ public class NavHelper extends BaseHelper {
         click(By.xpath("//a[contains(text(),'groups')]"));
     }
 
-    public void Home() {
+    public void homePage() {
         if (isElementPresent(By.id("maintable"))) {
             return;
         }

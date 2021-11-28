@@ -18,7 +18,7 @@ public class ContactAttributeTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition() {
-        app.goTo().Home();
+        app.goTo().homePage();
         if (app.db().contacts().size() == 0) {
             app.contact().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com"));
         }
@@ -26,7 +26,7 @@ public class ContactAttributeTests extends TestBase {
 
     @Test
     public void testContactPhones() {
-        app.goTo().Home();
+        app.goTo().homePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 

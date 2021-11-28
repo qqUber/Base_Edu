@@ -8,11 +8,11 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactAddwithGroups extends TestBase {
+public class ContactAddGroups extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
         if (app.db().contacts().size() == 0) {
-            app.goTo().Home();
+            app.goTo().homePage();
             app.contact().create(new ContactData().withFname("Dos")
                     .withLname("Create 3.11")
                     .withHphone("+79110009922")
@@ -21,7 +21,7 @@ public class ContactAddwithGroups extends TestBase {
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("213SS"));
-            app.goTo().Home();
+            app.goTo().homePage();
         }
     }
 
