@@ -11,6 +11,8 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import java.util.List;
 
 public class ContactHelper extends BaseHelper {
+    private Contacts contactCache = null;
+
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
@@ -93,8 +95,6 @@ public class ContactHelper extends BaseHelper {
     public void gotoAddnew() {
         click(By.xpath("//a[contains(text(),'add new')]"));
     }
-
-    private Contacts contactCache = null;
 
     public Contacts all() {
         if (contactCache != null) {

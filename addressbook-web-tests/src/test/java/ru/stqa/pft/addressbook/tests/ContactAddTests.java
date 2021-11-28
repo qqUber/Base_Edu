@@ -55,16 +55,16 @@ public class ContactAddTests extends TestBase {
     @Test(dataProvider = "validContactsFromJson")
     public void testAddPerson(ContactData contact) {
         app.goTo().Home();
-        Contacts before = app.db().contact();
+        Contacts before = app.db().contacts();
         //File photo = new File("src/test/resources/data.png");
         app.contact().create(contact);
-        Contacts after = app.db().contact();
+        Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.size() + 1));
 
         assertThat(after, equalTo(before.withAdded(contact.withId(after.stream()
                 .mapToInt(ContactData::getId)
                 .max()
                 .orElseGet(null)))));
-
+        verifyContactListInUI();
     }
 }

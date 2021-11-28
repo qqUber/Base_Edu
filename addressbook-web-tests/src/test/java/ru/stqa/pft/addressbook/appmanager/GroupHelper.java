@@ -9,6 +9,8 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.util.List;
 
 public class GroupHelper extends BaseHelper {
+    private Groups groupCache = null;
+
     public GroupHelper(WebDriver wd) {
         super(wd);
     }
@@ -77,8 +79,6 @@ public class GroupHelper extends BaseHelper {
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
-
-    private Groups groupCache = null;
 
     public Groups all() {
         if (groupCache != null) {

@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupDeleteTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
-        if (app.db().groups().size() == 0){
+        if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("Del_create"));
         }
@@ -27,6 +27,7 @@ public class GroupDeleteTests extends TestBase {
                 before.size() - 1));
         Groups after = app.db().groups();
         assertThat(after, equalTo(before.without(deletedGroup)));
+        verifyGroupListInUI();
     }
 
 }

@@ -28,7 +28,8 @@ public class DbHelper {
         session.close();
         return new Groups(result);
     }
-    public Contacts contact() {
+
+    public Contacts contacts() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();

@@ -12,10 +12,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactAttributeTests extends TestBase {
 
+    public static String cleaned(String phone) {
+        return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+    }
+
     @BeforeMethod
     public void ensurePrecondition() {
         app.goTo().Home();
-        if (app.db().contact().size() == 0) {
+        if (app.db().contacts().size() == 0) {
             app.contact().create(new ContactData().withFname("Dos").withLname("Create 3.11").withHphone("+79110009922").withEmail("123@yandex.com").withGroup(null));
         }
     }
@@ -40,10 +44,6 @@ public class ContactAttributeTests extends TestBase {
     private String mergeEmails(ContactData contact) {
         return Stream.of(contact.getEmail(), contact.getEmail2(), contact.getEmail3()).filter((s) -> !s.equals(""))
                 .collect(Collectors.joining("\n"));
-    }
-
-    public static String cleaned(String phone) {
-        return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 
 }

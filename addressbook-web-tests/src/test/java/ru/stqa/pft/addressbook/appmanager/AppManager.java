@@ -17,12 +17,12 @@ import java.util.concurrent.TimeUnit;
 
 public class AppManager {
     private final Properties properties;
+    private final String browser;
     WebDriver wd;
     private SessionHelper sessionHelper;
     private NavHelper navHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
-    private final String browser;
     private DbHelper dbHelper;
 
     public AppManager(String browser) {

@@ -22,6 +22,14 @@ public class GroupData {
     @Expose
     @Column(name = "group_name")
     private String name;
+    @Expose
+    @Column(name = "group_header")
+    @Type(type = "text")
+    private String header;
+    @Expose
+    @Column(name = "group_footer")
+    @Type(type = "text")
+    private String footer;
 
     @Override
     public boolean equals(Object o) {
@@ -35,15 +43,6 @@ public class GroupData {
     public int hashCode() {
         return Objects.hash(id, name, header, footer);
     }
-
-    @Expose
-    @Column(name = "group_header")
-    @Type(type = "text")
-    private String header;
-    @Expose
-    @Column(name = "group_footer")
-    @Type(type = "text")
-    private String footer;
 
     public GroupData withId(int id) {
         this.id = id;

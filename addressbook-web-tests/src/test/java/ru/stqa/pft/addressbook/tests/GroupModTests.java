@@ -11,9 +11,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupModTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
-        if (app.db().groups().size() == 0){
-        app.goTo().groupPage();
-        app.group().create(new GroupData().withName("213SS"));
+        if (app.db().groups().size() == 0) {
+            app.goTo().groupPage();
+            app.group().create(new GroupData().withName("213SS"));
         }
     }
 
@@ -34,7 +34,7 @@ public class GroupModTests extends TestBase {
         assertThat(after, equalTo(
                 before.without(modGroup)
                         .withAdded(group)));
+        verifyGroupListInUI();
     }
-
 
 }
