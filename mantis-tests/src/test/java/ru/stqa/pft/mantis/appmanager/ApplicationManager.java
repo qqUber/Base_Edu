@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class AppManager {
+public class ApplicationManager {
     private final Properties properties;
     private final String browser;
     WebDriver wd;
 
-    public AppManager(String browser) {
+    public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
     }
@@ -50,4 +50,11 @@ public class AppManager {
         wd.quit();
     }
 
+    public HttpSession newSession() {
+        return new HttpSession(this);
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
 }
