@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     private final Properties properties;
     private final String browser;
-    WebDriver wd;
+    private WebDriver wd;
+    private RegistrationHelper registrationHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -27,27 +28,12 @@ public class ApplicationManager {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(String.format("src/test/resources/%s.properties", target)));
 
-        switch (browser) {
-            case BrowserType.FIREFOX:
-                wd = new FirefoxDriver();
-                break;
-            case BrowserType.CHROME:
-                wd = new ChromeDriver();
-                break;
-            case BrowserType.IE:
-                wd = new InternetExplorerDriver();
-                break;
-            case BrowserType.EDGE:
-                wd = new EdgeDriver();
-                break;
-        }
-
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        wd.get(properties.getProperty("web.baseUrl"));
     }
 
     public void stop() {
-        wd.quit();
+        if (wd != null) {
+            wd.quit();
+        }
     }
 
     public HttpSession newSession() {
@@ -56,5 +42,35 @@ public class ApplicationManager {
 
     public String getProperty(String key) {
         return properties.getProperty(key);
+    }
+
+    public RegistrationHelper registration() {
+        if (registrationHelper == null) {
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
+    }
+
+    public WebDriver getDriver() {
+        if (wd == null) {
+            switch (browser) {
+                case BrowserType.FIREFOX:
+                    wd = new FirefoxDriver();
+                    break;
+                case BrowserType.CHROME:
+                    wd = new ChromeDriver();
+                    break;
+                case BrowserType.IE:
+                    wd = new InternetExplorerDriver();
+                    break;
+                case BrowserType.EDGE:
+                    wd = new EdgeDriver();
+                    break;
+            }
+
+            wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            wd.get(properties.getProperty("web.baseUrl"));
+        }
+        return wd;
     }
 }
