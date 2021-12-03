@@ -14,27 +14,28 @@ import static org.testng.Assert.assertTrue;
 
 public class ChangePasswordTests extends TestBase {
 
-  @BeforeMethod
-  public void startMailServer() {
-    app.mail().start();
-  }
+    @BeforeMethod
+    public void startMailServer() {
+        app.mail().start();
+    }
 
-  @Test
-  public void testChangePassword() throws IOException {
-    Users users = app.db().usersWithoutAdmin();
-    UserData user = users.iterator().next();
-    String newPassword = "12345";
-    app.session().login(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
-    app.user().resetUserPassword(user.getId());
+    @Test
+    public void testChangePassword() throws IOException {
+        long now = System.currentTimeMillis();
+        Users users = app.db().usersWithoutAdmin();
+        UserData user = users.iterator().next();
+        String newPassword = String.format("NN", now);
+        app.session().login(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
+        app.user().resetUserPassword(user.getId());
 
-    List<MailMessage> mailMessage = app.mail().waitForMail(1, 10000);
-    String confirmationLink = app.mail().findConfirmationLink(mailMessage, user.getEmail());
-    app.registration().finish(confirmationLink, newPassword);
-    assertTrue(app.httpSession().login(user.getName(), newPassword));
-  }
+        List<MailMessage> mailMessage = app.mail().waitForMail(1, 10000);
+        String confirmationLink = app.mail().findConfirmationLink(mailMessage, user.getEmail());
+        app.reg().finish(confirmationLink, newPassword);
+        assertTrue(app.httpSession().login(user.getName(), newPassword));
+    }
 
-  @AfterMethod(alwaysRun = true)
-  public void stopMailServer() {
-    app.mail().stop();
-  }
+    @AfterMethod(alwaysRun = true)
+    public void stopMailServer() {
+        app.mail().stop();
+    }
 }
