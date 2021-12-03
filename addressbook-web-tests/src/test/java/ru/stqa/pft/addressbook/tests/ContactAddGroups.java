@@ -39,7 +39,6 @@ public class ContactAddGroups extends TestBase {
         Groups contactAfter = app.db().contactById(selectedContact.getId()).getGroups();
         assertThat(contactAfter, equalTo(contactBefore.withAdded(app.db().groupById(selectedGroup.getId()))));
         verifyContactListInUI();
-        System.out.println("Contact =" + selectedContact + " added into Group = " + selectedGroup);
     }
 
     private ContactData selectContact(GroupData selectedGroup) {
@@ -50,8 +49,8 @@ public class ContactAddGroups extends TestBase {
             }
         }
         app.goTo().homePage();
-        app.contact().create(new ContactData().withFname("FirstTestName").withLname("LastTestName").withAddress("AddressTest")
-                .withMphone("89111234442").withEmail("RRRRR@test.com"));
+        app.contact().create(new ContactData().withFname("Oppsol").withLname("Loppi").withMphone("+79161112200")
+                .withEmail("pop@mail.ru"));
         Contacts contactsWithAdded = app.db().contacts();
         return app.db().contactById(contactsWithAdded.stream().mapToInt((c) -> c.getId()).max().getAsInt());
     }
