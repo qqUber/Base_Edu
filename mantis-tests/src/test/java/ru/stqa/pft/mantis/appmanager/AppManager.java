@@ -19,7 +19,7 @@ public class AppManager {
     private final String browser;
     private RegHelper regHelper;
     private FtpHelper ftp;
-    private MailHelper mailHelper;
+    public MailHelper mailHelper;
     private JamesHelper jamesHelper;
     private ManageHelper userHelper;
     private DbHelper dbHelper;
@@ -114,4 +114,5 @@ public class AppManager {
         }
         return sessionHelper;
     }
+
 }
