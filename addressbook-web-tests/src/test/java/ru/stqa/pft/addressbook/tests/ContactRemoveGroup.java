@@ -1,12 +1,15 @@
 package ru.stqa.pft.addressbook.tests;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-public class ContactRemoveGroup extends TestBase{
+public class ContactRemoveGroup extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
@@ -25,24 +28,37 @@ public class ContactRemoveGroup extends TestBase{
         }
     }
 
-    public ContactData checkContactWithGroup(ContactData contact) {
-
-        if (contact.getGroups().size() == 0) {
-            app.contact().createWithGroup(contact, app.db().groups().iterator().next());
-            app.goTo().homePage();
-        }
-        return contact;
+    @Test
+    public void testContactRemoveFromGroup() {
+        GroupData selectedGroup = selectGroup();
+        ContactData selectedContact = selectContact(selectedGroup);
+        Groups contactBefore = selectedContact.getGroups();
+        app.goTo().homePage();
+        app.contact().removeFromGroup(selectedContact, selectedGroup);
+        Groups contactAfter = app.db().contactById(selectedContact.getId()).getGroups();
+        assertThat(contactAfter, equalTo(contactBefore.without(app.db().groupById(selectedGroup.getId()))));
+        verifyContactListInUI();
     }
 
-    @Test
-    public void testRemoveBindGroups() {
-        ContactData contact = app.db().contacts().iterator().next();
-        checkContactWithGroup(contact);
-        ContactData before = app.db().contacts().iterator().next();
-        GroupData removeGroup = before.getGroups().iterator().next();
-        app.contact().removeFromGroup(contact, removeGroup);
-        ContactData after = app.db().contacts().iterator().next();
+    private GroupData selectGroup() {
+        Groups groups = app.db().groups();
+        for (GroupData group : groups) {
+            if (group.getContacts().size() > 0) {
+                return group;
+            }
+        }
+        return groups.iterator().next();
+    }
 
-        assertThat(before.getGroups(), equalTo(after.addGroup(removeGroup).getGroups()));
+    private ContactData selectContact(GroupData selectedGroup) {
+        Contacts contacts = app.db().contacts();
+        for (ContactData contact : contacts) {
+            if (contact.getGroups().contains(selectedGroup)) {
+                return contact;
+            }
+        }
+        ContactData selectedContact = contacts.iterator().next();
+        app.contact().addIntoGroup(selectedContact, selectedGroup);
+        return selectedContact;
     }
 }

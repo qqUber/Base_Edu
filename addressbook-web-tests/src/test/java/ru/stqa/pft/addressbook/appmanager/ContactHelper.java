@@ -59,14 +59,14 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void submitAdd() {
-        click(By.xpath("//input[@name='add']"));
+        click(By.xpath("//input[@value='Add to']"));
     }
 
     private void submitAddGroup() {
         wd.findElement(By.name("add")).click();
     }
 
-    private void selectPersonById(int id) {
+    private void selPersonById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
@@ -95,7 +95,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void delete(ContactData contact) {
-        selectPersonById(contact.getId());
+        selPersonById(contact.getId());
         deletePersons();
         contactCache = null;
         acceptAlert();
@@ -156,12 +156,24 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void createWithGroup(ContactData before, GroupData group4Add) {
-        selectPersonById(before.getId());
+        selPersonById(before.getId());
         selGroupForContact(group4Add.getName());
         submitAddGroup();
         returnToGroup(group4Add);
     }
-
+    public void addIntoGroup(ContactData contact, GroupData group) {
+        selPersonById(contact.getId());
+        selectGroupById(group.getId());
+        submitAdd();
+    }
+    public void selectGroupById(int id) {
+        wd.findElement(By.cssSelector("select[name='to_group']>option[value='" + id + "']")).click();
+    }
+    public void removeFromGroup(ContactData contact, GroupData group) {
+        selContactByGroup(group.getId());
+        selPersonById(contact.getId());
+        removeSelectedContact();
+    }
     private void returnToGroup(GroupData group) {
         wd.findElement(By.linkText("group page \"" + group.getName() + "\""));
     }
@@ -170,18 +182,10 @@ public class ContactHelper extends BaseHelper {
         new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(name);
     }
 
-    public void removeFromGroup(ContactData contact, GroupData removeGroup) {
-        selectGroup4Remove(removeGroup.getName());
-        selectPersonById(contact.getId());
-        submitRemoveGroup();
-        returnToGroup(removeGroup);
+    private void selContactByGroup(int id) {
+        wd.findElement(By.cssSelector("select[name='group']>option[value='" + id + "']")).click();
     }
-
-    private void submitRemoveGroup() {
-        wd.findElement(By.name("remove")).click();
-    }
-
-    private void selectGroup4Remove(String name) {
-        new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
+    private void removeSelectedContact() {
+        click(By.name("remove"));
     }
 }

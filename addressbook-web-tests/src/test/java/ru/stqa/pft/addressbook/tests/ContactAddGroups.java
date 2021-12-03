@@ -3,37 +3,70 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactAddGroups extends TestBase {
-    @BeforeMethod
-    public void ensurePrecondition() {
-        if (app.db().contacts().size() == 0) {
-            app.goTo().homePage();
-            app.contact().create(new ContactData().withFname("Dos")
-                    .withLname("Create 3.11")
-                    .withHphone("+79110009922")
-                    .withEmail("123@yandex.com"));
+
+        @BeforeMethod
+        public void ensurePreconditions() {
+
+            if (app.db().groups().size() == 0) {
+                app.goTo().groupPage();
+                app.group().create(new GroupData().withName("Plus1").withHeader("pop").withFooter("top"));
+                app.goTo().homePage();
+            }
+
+            if (app.db().contacts().size() == 0) {
+                app.goTo().homePage();
+                app.contact().create(new ContactData()
+                        .withFname("Oppsol").withLname("Loppi").withMphone("+79161112200")
+                        .withEmail("pop@mail.ru").addGroup(app.db().groups().iterator().next()));
+            }
         }
-        if (app.db().groups().size() == 0) {
-            app.goTo().groupPage();
-            app.group().create(new GroupData().withName("213SS"));
-            app.goTo().homePage();
-        }
-    }
 
     @Test
-    public void testAddPersonWithGroups() {
-      ContactData before = app.db().contacts().iterator().next();
-        GroupData group4Add = app.db().groups().iterator().next();
+    public void testContactAddIntoGroup() {
+        GroupData selectedGroup = selectGroup();
+        ContactData selectedContact = selectContact(selectedGroup);
+        Groups contactBefore = selectedContact.getGroups();
+        app.goTo().homePage();
+        app.contact().addIntoGroup(selectedContact, selectedGroup);
+        Groups contactAfter = app.db().contactById(selectedContact.getId()).getGroups();
+        assertThat(contactAfter, equalTo(contactBefore.withAdded(app.db().groupById(selectedGroup.getId()))));
+        verifyContactListInUI();
+        System.out.println("Contact =" + selectedContact + " added into Group = " + selectedGroup);
+    }
 
-        app.contact().createWithGroup(before, group4Add);
-        ContactData after = app.db().contacts().iterator().next();
+    private ContactData selectContact(GroupData selectedGroup) {
+        Contacts contacts = app.db().contacts();
+        for (ContactData contact : contacts) {
+            if (!contact.getGroups().contains(selectedGroup)) {
+                return contact;
+            }
+        }
+        app.goTo().homePage();
+        app.contact().create(new ContactData().withFname("FirstTestName").withLname("LastTestName").withAddress("AddressTest")
+                .withMphone("89111234442").withEmail("RRRRR@test.com"));
+        Contacts contactsWithAdded = app.db().contacts();
+        return app.db().contactById(contactsWithAdded.stream().mapToInt((c) -> c.getId()).max().getAsInt());
+    }
 
-        assertThat(before.addGroup(group4Add).getGroups(), equalTo(after.getGroups()));
-
+    private GroupData selectGroup() {
+        Groups groups = app.db().groups();
+        Contacts contacts = app.db().contacts();
+        for (GroupData group : groups) {
+            if (group.getContacts().size() < contacts.size()) {
+                return group;
+            }
+        }
+        app.goTo().groupPage();
+        app.group().create(new GroupData().withName("Source"));
+        Groups groupsWithAdded = app.db().groups();
+        return app.db().groupById(groupsWithAdded.stream().mapToInt((g) -> g.getId()).max().getAsInt());
     }
 }
