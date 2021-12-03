@@ -19,7 +19,7 @@ public class AppManager {
     private final String browser;
     private RegHelper regHelper;
     private FtpHelper ftp;
-    public MailHelper mailHelper;
+    private MailHelper mailHelper;
     private JamesHelper jamesHelper;
     private ManageHelper userHelper;
     private DbHelper dbHelper;
