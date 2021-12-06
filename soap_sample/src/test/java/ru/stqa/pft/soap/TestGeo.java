@@ -7,7 +7,7 @@ public class TestGeo {
 
     @Test
     public void testMyIp() {
-        String geoIp = new GeoIPService().getGeoIPServiceSoap12().getIpLocation("185.228.112.64");
+        String geoIp = new GeoIPService().getGeoIPServiceSoap12().getIpLocation("194.28.29.152");
         System.out.println(geoIp);}
 
 }
