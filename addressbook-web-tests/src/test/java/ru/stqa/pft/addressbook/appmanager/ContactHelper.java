@@ -155,7 +155,7 @@ public class ContactHelper extends BaseHelper {
                 .withEmail3(email3);
     }
 
-    public void createWithGroup(ContactData before, GroupData group4Add) {
+    public void selectWithGroup(ContactData before, GroupData group4Add) {
         selPersonById(before.getId());
         selGroupForContact(group4Add.getName());
         submitAddGroup();
