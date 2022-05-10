@@ -10,4 +10,6 @@ dependencies {
     implementation 'org.apache.httpcomponents:httpclient:4.5.7'
     implementation 'org.apache.httpcomponents:fluent-hc:4.5.7'
     implementation 'com.jayway.restassured:rest-assured:2.9.0'
+    implementation 'com.jcabi:jcabi-github:1.1.2'
+
 }
