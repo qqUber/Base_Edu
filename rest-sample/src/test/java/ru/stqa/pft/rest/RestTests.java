@@ -21,7 +21,7 @@ public class RestTests extends TestBase {
     public void testCreateIssue() throws IOException {
         //skipIfNotFixed(1540);
         Set<Issue> oldIssues = getIssues();
-        Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
+        Issue newIssue = new Issue().withSubject("Test issue_qqUber").withDescription("My New test issue");
         int issueId = createIssue(newIssue);
         Set<Issue> newIssues = getIssues();
         oldIssues.add(newIssue.withId(issueId));
@@ -38,7 +38,7 @@ public class RestTests extends TestBase {
     }
 
     private Executor getExecutor() {
-        return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "");
+        return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "556699");
     }
 
     private int createIssue(Issue newIssue) throws IOException {
