@@ -5,11 +5,9 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.AppManager;
 
-import java.io.IOException;
-
 public class TestBase {
 
-    protected static final AppManager app = new AppManager(System.getProperty("browser", BrowserType.FIREFOX));
+    protected static final AppManager app = new AppManager(System.getProperty("browser", BrowserType.CHROME));
 
     @BeforeSuite
     public void setUp() throws Exception {
@@ -18,7 +16,7 @@ public class TestBase {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void tearDown() throws IOException {
+    public void tearDown() {
         //app.ftp().restore("config_inc.php.bak", "config_inc.php");
         app.stop();
     }

@@ -5,6 +5,12 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook_debug.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook_debug.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook_debug.main.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook_debug.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook_debug.test.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook_debug.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.example.addressbook_debug.iml" filepath="$PROJECT_DIR$/.idea/modules/org.example.addressbook_debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.example.addressbook_debug.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.example.addressbook_debug.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.example.addressbook_debug.test.iml" filepath="$PROJECT_DIR$/.idea/modules/org.example.addressbook_debug.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.example.sandbox.iml" filepath="$PROJECT_DIR$/.idea/modules/org.example.sandbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.example.sandbox.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.example.sandbox.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.example.sandbox.test.iml" filepath="$PROJECT_DIR$/.idea/modules/org.example.sandbox.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.test.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.test.iml" />
