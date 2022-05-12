@@ -4,11 +4,11 @@
     <test name="Contacts">
         <classes>
             <class name="ru.stqa.pft.addressbook.tests.ContactAddTests"/>
-            <!--class name="ru.stqa.pft.addressbook.tests.ContactModTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactModTests"/>
             <class name="ru.stqa.pft.addressbook.tests.ContactDeleteTests"/>
             <class name="ru.stqa.pft.addressbook.tests.ContactAttributeTests"/>
             <class name="ru.stqa.pft.addressbook.tests.ContactAddGroups"/>
-            <class name="ru.stqa.pft.addressbook.tests.ContactRemoveGroup"/-->
+            <class name="ru.stqa.pft.addressbook.tests.ContactRemoveGroup"/>
         </classes>
     </test>
 </suite>

@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -39,18 +40,19 @@ public class AppManager {
         properties.load(new FileReader(String.format("src/test/resources/%s.properties", target)));
 
         if ("".equals(properties.getProperty("selenium.server"))) {
-            if (BrowserType.FIREFOX.equals(browser)) {
-                wd = new FirefoxDriver();
-            } else if (BrowserType.CHROME.equals(browser)) {
-                wd = new ChromeDriver();
-            } else if (BrowserType.IE.equals(browser)) {
-                wd = new InternetExplorerDriver();
-            } else if (BrowserType.EDGE.equals(browser)) {
-                wd = new EdgeDriver();
-            }
+                if (BrowserType.FIREFOX.equals(browser)) {
+                    wd = new FirefoxDriver();
+                } else if (BrowserType.CHROME.equals(browser)) {
+                    wd = new ChromeDriver();
+                } else if (BrowserType.IE.equals(browser)) {
+                    wd = new InternetExplorerDriver();
+                } else if (BrowserType.EDGE.equals(browser)) {
+                    wd = new EdgeDriver();
+                }
             } else {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setBrowserName(browser);
+                capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
                 wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
 
