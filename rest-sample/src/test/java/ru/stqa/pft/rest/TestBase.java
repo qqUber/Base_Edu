@@ -16,7 +16,10 @@ public class TestBase {
     }
 
     public boolean isIssueOpen(int issueId) throws IOException {
-        return !status(issueId).equals("Resolved");
+        if (status(issueId).equals("Open")) {
+            return true;
+        }
+            return false;
     }
 
     public String status(int issue_id) {
