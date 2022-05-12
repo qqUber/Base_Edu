@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -52,7 +51,7 @@ public class AppManager {
             } else {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setBrowserName(browser);
-                capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
+                //capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
                 wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
 
