@@ -8,10 +8,12 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -34,21 +36,23 @@ public class AppManager {
         dbHelper = new DbHelper();
 
         String target = System.getProperty("target", "local");
-        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        properties.load(new FileReader(String.format("src/test/resources/%s.properties", target)));
 
-        switch (browser) {
-            case BrowserType.FIREFOX:
-                wd = new FirefoxDriver();
-                break;
-            case BrowserType.CHROME:
-                wd = new ChromeDriver();
-                break;
-            case BrowserType.IE:
-                wd = new InternetExplorerDriver();
-                break;
-            case BrowserType.EDGE:
-                wd = new EdgeDriver();
-                break;
+        if ("".equals(properties.getProperty("selenium.server"))) {
+                if (BrowserType.FIREFOX.equals(browser)) {
+                    wd = new FirefoxDriver();
+                } else if (BrowserType.CHROME.equals(browser)) {
+                    wd = new ChromeDriver();
+                } else if (BrowserType.IE.equals(browser)) {
+                    wd = new InternetExplorerDriver();
+                } else if (BrowserType.EDGE.equals(browser)) {
+                    wd = new EdgeDriver();
+                }
+            } else {
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.setBrowserName(browser);
+                //capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
+                wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
 
         System.out.println(wd.getTitle());

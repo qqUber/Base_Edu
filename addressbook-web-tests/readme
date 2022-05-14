@@ -1,0 +1,4 @@
+Use properties in terminal like this example
+
+$Project_dir/.\gradlew -Pbrowser=chrome *some tests from build.gradle
+$Project_dir/.\gradlew -Ptarget=local *some tests from build.gradle
