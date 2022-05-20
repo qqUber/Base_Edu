@@ -42,18 +42,18 @@ public class DbHelper {
     public ContactData contactById(Integer id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<ContactData> result = session.createQuery("from ContactData where id = '" + id + "'").list();
+        List result = session.createQuery("from ContactData where id = '" + id + "'").list();
         session.getTransaction().commit();
         session.close();
-        return result.get(0);
+        return (ContactData) result.get(0);
     }
 
     public GroupData groupById(Integer id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<GroupData> result = session.createQuery("from GroupData where group_id = '" + id + "'").list();
+        List result = session.createQuery("from GroupData where group_id = '" + id + "'").list();
         session.getTransaction().commit();
         session.close();
-        return result.get(0);
+        return (GroupData) result.get(0);
     }
 }
